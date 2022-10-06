@@ -8,12 +8,10 @@ public class ProjectileMover : MonoBehaviour
     public float jumpForce = 7f;
     public CapsuleCollider col;
     public LayerMask groundLayer;
-    public Transform rightLaunchDirection;
-    public Transform leftLaunchDirection;
+    public Transform launchDirection;
     public float launchForce = 350f;
 
     private Rigidbody _rb;
-    private Transform _launchDirection;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -27,6 +25,15 @@ public class ProjectileMover : MonoBehaviour
             _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             LaunchPlayer();
         }
+
+        if (IsGrounded() && Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Rotate(Vector3.up * 100f * Time.deltaTime);
+        }
+        if (IsGrounded() && Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Rotate(Vector3.down * 100f * Time.deltaTime);
+        }
     }
 
     private bool IsGrounded()
@@ -37,17 +44,8 @@ public class ProjectileMover : MonoBehaviour
 
     private void LaunchPlayer()
     {
-        if (transform.position.x >= 0)
-        {
-            _launchDirection = rightLaunchDirection;
-        }
-        else
-        {
-            _launchDirection = leftLaunchDirection;
-        }
-
-        Vector3 launchDir = new Vector3(_launchDirection.position.x - transform.position.x,
-            _launchDirection.position.y - transform.position.y, _launchDirection.position.z - transform.position.z);
+        Vector3 launchDir = new Vector3(launchDirection.position.x - transform.position.x,
+            launchDirection.position.y - transform.position.y, launchDirection.position.z - transform.position.z);
         _rb.AddForce(launchDir * launchForce);
     }
 }
