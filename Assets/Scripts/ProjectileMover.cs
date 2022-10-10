@@ -10,8 +10,12 @@ public class ProjectileMover : MonoBehaviour
     public LayerMask groundLayer;
     public Transform launchDirection;
     public float launchForce = 350f;
+    public float fallMultiplier = 2.5f;
+    public float jumpTime = 0.35f;
+    public float jumpTimeCounter;
 
     private Rigidbody _rb;
+    private bool isJumping;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -22,18 +26,30 @@ public class ProjectileMover : MonoBehaviour
     {
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
-            _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isJumping = true;
+            jumpTimeCounter = jumpTime;
+            _rb.velocity = Vector3.up * jumpForce;
             LaunchPlayer();
         }
-
-        if (IsGrounded() && Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.Space) && isJumping)
         {
-            transform.Rotate(Vector3.up * 100f * Time.deltaTime);
+            if (jumpTimeCounter > 0)
+            {
+                _rb.velocity = Vector3.up * jumpForce;
+                LaunchPlayer();
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
         }
-        if (IsGrounded() && Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            transform.Rotate(Vector3.down * 100f * Time.deltaTime);
+            isJumping = false;
         }
+        //to make the fall feels easier to eye and be more like a gaming jump
+        _rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
     }
 
     private bool IsGrounded()
