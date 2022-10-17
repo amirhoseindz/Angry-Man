@@ -1,21 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ProjectileMover : MonoBehaviour
 {
-    public float jumpForce = 7f;
     public CapsuleCollider col;
     public LayerMask groundLayer;
     public Transform launchDirection;
-    public float launchForce = 350f;
-    public float fallMultiplier = 2.5f;
-    public float jumpTime = 0.35f;
-    public float jumpTimeCounter;
+    public float launchForce;
 
     private Rigidbody _rb;
-    private bool isJumping;
+    private float minLaunchForce = 7f;
+    private float maxLaunchForce = 10f;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -26,30 +25,20 @@ public class ProjectileMover : MonoBehaviour
     {
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
-            isJumping = true;
-            jumpTimeCounter = jumpTime;
-            _rb.velocity = Vector3.up * jumpForce;
-            LaunchPlayer();
+            launchForce = minLaunchForce;
         }
-        if (Input.GetKey(KeyCode.Space) && isJumping)
+        if (Input.GetKey(KeyCode.Space))
         {
-            if (jumpTimeCounter > 0)
+            if (launchForce < maxLaunchForce)
             {
-                _rb.velocity = Vector3.up * jumpForce;
-                LaunchPlayer();
-                jumpTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                isJumping = false;
+                launchForce += 1.5f * Time.deltaTime;
             }
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            isJumping = false;
+            LaunchPlayer();
+            launchForce = minLaunchForce;
         }
-        //to make the fall feels easier to eye and be more like a gaming jump
-        _rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
     }
 
     private bool IsGrounded()
@@ -60,8 +49,11 @@ public class ProjectileMover : MonoBehaviour
 
     private void LaunchPlayer()
     {
-        Vector3 launchDir = new Vector3(launchDirection.position.x - transform.position.x,
-            launchDirection.position.y - transform.position.y, launchDirection.position.z - transform.position.z);
-        _rb.AddForce(launchDir * launchForce);
+        _rb.velocity = (launchDirection.forward * launchForce);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, launchDirection.forward);
     }
 }
