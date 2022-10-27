@@ -39,6 +39,9 @@ public class ProjectileMover : MonoBehaviour
             LaunchPlayer();
             launchForce = minLaunchForce;
         }
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3.77f, 3.77f), transform.position.y,
+            transform.position.z);
     }
 
     private bool IsGrounded()
