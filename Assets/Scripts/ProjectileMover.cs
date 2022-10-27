@@ -34,7 +34,7 @@ public class ProjectileMover : MonoBehaviour
                 launchForce += 1.5f * Time.deltaTime;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (IsGrounded() && Input.GetKeyUp(KeyCode.Space))
         {
             LaunchPlayer();
             launchForce = minLaunchForce;
