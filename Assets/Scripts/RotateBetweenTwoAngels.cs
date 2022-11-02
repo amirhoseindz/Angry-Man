@@ -10,8 +10,8 @@ public class RotateBetweenTwoAngels : MonoBehaviour
     {
         Vector3 direction = GroundSideEdge.position - transform.position;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 290;
 
-        transform.rotation = Quaternion.Euler(0, Mathf.PingPong(Time.time * 30 , 180) - angle, 0);
+        transform.rotation = Quaternion.Euler(0, Mathf.PingPong(Time.time * 30 , 150) - angle, 0);
     }
 }

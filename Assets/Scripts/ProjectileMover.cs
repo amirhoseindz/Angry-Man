@@ -13,8 +13,8 @@ public class ProjectileMover : MonoBehaviour
     public float launchForce;
 
     private Rigidbody _rb;
-    private float minLaunchForce = 7f;
-    private float maxLaunchForce = 10f;
+    private float _minLaunchForce = 7f;
+    private float _maxLaunchForce = 10f;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -25,11 +25,11 @@ public class ProjectileMover : MonoBehaviour
     {
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
-            launchForce = minLaunchForce;
+            launchForce = _minLaunchForce;
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            if (launchForce < maxLaunchForce)
+            if (launchForce < _maxLaunchForce)
             {
                 launchForce += 1.5f * Time.deltaTime;
             }
@@ -37,7 +37,7 @@ public class ProjectileMover : MonoBehaviour
         if (IsGrounded() && Input.GetKeyUp(KeyCode.Space))
         {
             LaunchPlayer();
-            launchForce = minLaunchForce;
+            launchForce = _minLaunchForce;
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3.77f, 3.77f), transform.position.y,

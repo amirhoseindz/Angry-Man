@@ -146,14 +146,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168092465}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -3.987, y: 1, z: -9.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &434478867
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 434478870}
   - component: {fileID: 434478869}
   - component: {fileID: 434478868}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 738747715}
   - component: {fileID: 738747714}
   - component: {fileID: 738747713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,6 +455,7 @@ GameObject:
   - component: {fileID: 910886786}
   - component: {fileID: 910886785}
   - component: {fileID: 910886784}
+  - component: {fileID: 910886789}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -546,7 +547,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910886783}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1, z: 9.23}
   m_LocalScale: {x: 0.75, y: 0.5, z: 0.75}
   m_ConstrainProportionsScale: 0
@@ -554,7 +555,28 @@ Transform:
   - {fileID: 1086270559}
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &910886789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910886783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4afd0ac817ec049ad98bd5e2614830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 19.7
+  viewAngle: 15
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 64
+  visibleTargets: []
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,7 +688,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086270558}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.31, y: 0.1400001, z: -1.162}
+  m_LocalPosition: {x: 0.28, y: 0.1400001, z: 1.21}
   m_LocalScale: {x: 0.26666668, y: 0.4, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1160,7 +1182,7 @@ GameObject:
   - component: {fileID: 2136484723}
   - component: {fileID: 2136484722}
   - component: {fileID: 2136484721}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
