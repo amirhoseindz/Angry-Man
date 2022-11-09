@@ -18,7 +18,10 @@ public class DealDamage : MonoBehaviour
 
         if (destroyAfterHit)
         {
-            gameObject.SetActive(false);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

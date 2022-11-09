@@ -13,8 +13,8 @@ public class ProjectileMover : MonoBehaviour
     public float launchForce;
 
     private Rigidbody _rb;
-    private float _minLaunchForce = 7f;
-    private float _maxLaunchForce = 10f;
+    private float _minLaunchForce = 5f;
+    private float _maxLaunchForce = 8f;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();

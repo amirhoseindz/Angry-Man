@@ -21,9 +21,11 @@ public class FieldOfView : MonoBehaviour
 
     public MeshFilter viewMeshFilter;
     private Mesh viewMesh;
+    private ShootingBullets Gun;
     
     private void Start()
     {
+        Gun = GameObject.FindGameObjectWithTag("Gun").GetComponent<ShootingBullets>();
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
@@ -60,6 +62,7 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
+                    Gun.Shoot();
                 }
             }
         }
