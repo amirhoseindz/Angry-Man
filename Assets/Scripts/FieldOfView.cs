@@ -20,15 +20,15 @@ public class FieldOfView : MonoBehaviour
     public float edgeDstThreshold;
 
     public MeshFilter viewMeshFilter;
-    private Mesh viewMesh;
-    private ShootingBullets Gun;
+    private Mesh _viewMesh;
+    private ShootingBullets _enemyGun;
     
     private void Start()
     {
-        Gun = GameObject.FindGameObjectWithTag("Gun").GetComponent<ShootingBullets>();
-        viewMesh = new Mesh();
-        viewMesh.name = "View Mesh";
-        viewMeshFilter.mesh = viewMesh;
+        _enemyGun = GameObject.FindGameObjectWithTag("EnemyGun").GetComponent<ShootingBullets>();
+        _viewMesh = new Mesh();
+        _viewMesh.name = "View Mesh";
+        viewMeshFilter.mesh = _viewMesh;
         StartCoroutine("FindTargetsWithDelay", 0.5f);
     }
 
@@ -62,7 +62,7 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
-                    Gun.Shoot();
+                    _enemyGun.Shoot();
                 }
             }
         }
@@ -116,10 +116,10 @@ public class FieldOfView : MonoBehaviour
             }
         }
         
-        viewMesh.Clear();
-        viewMesh.vertices = vertices;
-        viewMesh.triangles = triangles;
-        viewMesh.RecalculateNormals();
+        _viewMesh.Clear();
+        _viewMesh.vertices = vertices;
+        _viewMesh.triangles = triangles;
+        _viewMesh.RecalculateNormals();
     }
 
     EdgeInfo FindEdge(ViewCastInfo minViewCast, ViewCastInfo maxViewCast)

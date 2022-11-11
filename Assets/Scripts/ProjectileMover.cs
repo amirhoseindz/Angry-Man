@@ -11,6 +11,7 @@ public class ProjectileMover : MonoBehaviour
     public LayerMask groundLayer;
     public Transform launchDirection;
     public float launchForce;
+    [HideInInspector] public bool playerOnEndLine;
 
     private Rigidbody _rb;
     private float _minLaunchForce = 5f;
@@ -41,7 +42,7 @@ public class ProjectileMover : MonoBehaviour
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3.77f, 3.77f), transform.position.y,
-            transform.position.z);
+            Mathf.Clamp(transform.position.z, -9.23f, 9.23f));
     }
 
     private bool IsGrounded()
