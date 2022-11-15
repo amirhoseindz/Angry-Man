@@ -12,7 +12,7 @@ public class ShootingLineTrigger : MonoBehaviour
         if (other.gameObject == player)
         {
             var _player = player.GetComponent<ProjectileMover>();
-            _player.playerOnEndLine = true;   
+            _player.playerOnEndLine = true;
         }
     }
 }

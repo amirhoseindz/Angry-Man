@@ -42,7 +42,7 @@ public class ProjectileMover : MonoBehaviour
         }
 
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3.77f, 3.77f), transform.position.y,
-            Mathf.Clamp(transform.position.z, -9.23f, 9.23f));
+            Mathf.Clamp(transform.position.z, -9.23f, 4.4f));
     }
 
     private bool IsGrounded()

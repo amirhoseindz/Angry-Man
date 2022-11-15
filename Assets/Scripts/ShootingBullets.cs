@@ -6,17 +6,25 @@ using UnityEngine;
 
 public class ShootingBullets : MonoBehaviour
 {
-    public GameObject Projectile;
-    public GameObject Target;
+    public GameObject projectile;
+    public GameObject target;
     
-    [SerializeField] private Transform FirePoint;
-    [SerializeField] private float FireForce;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private float fireForce;
 
+    
+    private void Update()
+    {
+        if (gameObject.CompareTag("PlayerGun") && Input.GetKeyUp(KeyCode.A)) 
+        {
+            Shoot();
+        }
+    }
     public void Shoot()
     {
-        Rigidbody bullet = Instantiate(Projectile, FirePoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-        Vector3 direction = Target.transform.position - FirePoint.position;
+        Rigidbody bullet = Instantiate(projectile, firePoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+        Vector3 direction = target.transform.position - firePoint.position;
         direction = direction.normalized;
-        bullet.velocity = direction * FireForce;
+        bullet.velocity = direction * fireForce;
     }
 }

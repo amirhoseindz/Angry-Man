@@ -128,4 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 0
-  destroyAfterHit: 1
+  destroyAfterHit: 0

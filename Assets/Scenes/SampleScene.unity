@@ -673,6 +673,7 @@ MonoBehaviour:
   edgeResolveIteration: 4
   edgeDstThreshold: 0.5
   viewMeshFilter: {fileID: 1242427379}
+  player: {fileID: 1475766739}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,10 +869,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f748061b9834f76488a0f87059046bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Projectile: {fileID: 1958927355000235362, guid: e549f37cc91fac14698cf3b5a15fb8d7, type: 3}
-  Target: {fileID: 1475766739}
-  FirePoint: {fileID: 2060500859}
-  FireForce: 25
+  projectile: {fileID: 1958927355000235362, guid: e549f37cc91fac14698cf3b5a15fb8d7, type: 3}
+  target: {fileID: 1475766739}
+  firePoint: {fileID: 2060500859}
+  fireForce: 25
 --- !u!1 &1242427378
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,7 +986,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1475766739}
-  enemy: {fileID: 910886783}
   playerGun: {fileID: 1679902306}
   enemyGun: {fileID: 1086270558}
 --- !u!4 &1359962096
@@ -1304,7 +1304,7 @@ GameObject:
   - component: {fileID: 1679902308}
   m_Layer: 3
   m_Name: PlayerGun
-  m_TagString: Untagged
+  m_TagString: PlayerGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1337,10 +1337,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f748061b9834f76488a0f87059046bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Projectile: {fileID: 1958927355000235362, guid: e549f37cc91fac14698cf3b5a15fb8d7, type: 3}
-  Target: {fileID: 910886783}
-  FirePoint: {fileID: 839548852}
-  FireForce: 25
+  projectile: {fileID: 1958927355000235362, guid: e549f37cc91fac14698cf3b5a15fb8d7, type: 3}
+  target: {fileID: 910886783}
+  firePoint: {fileID: 839548852}
+  fireForce: 15
 --- !u!65 &1679902309
 BoxCollider:
   m_ObjectHideFlags: 0

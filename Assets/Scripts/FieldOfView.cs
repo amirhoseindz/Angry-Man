@@ -22,6 +22,7 @@ public class FieldOfView : MonoBehaviour
     public MeshFilter viewMeshFilter;
     private Mesh _viewMesh;
     private ShootingBullets _enemyGun;
+    public GameObject player;
     
     private void Start()
     {
@@ -34,7 +35,8 @@ public class FieldOfView : MonoBehaviour
 
     IEnumerator FindTargetsWithDelay(float delay)
     {
-        while (true)
+        var _player = player.GetComponent<ProjectileMover>();
+        while (!_player.playerOnEndLine)
         {
             yield return new WaitForSeconds(delay);
             FindVisibleTargets();
@@ -59,7 +61,7 @@ public class FieldOfView : MonoBehaviour
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
                 float disToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstacleMask))
+                if (Physics.Raycast(transform.position, dirToTarget, disToTarget, targetMask))
                 {
                     visibleTargets.Add(target);
                     _enemyGun.Shoot();
